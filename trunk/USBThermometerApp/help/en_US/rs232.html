@@ -1,0 +1,77 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>RS-232 trigger</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>RS-232 trigger</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Help</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								RS232 trigger allows to change state of serial port pins and/or sends a string of bytes 
+								(command) to a remote device. <b>It is possible to control one serial port with multiple triggers.</b>
+								Thanks to this user is allowed to build a thermostat with multiple sensors control.
+								
+								<br/><br/>
+								
+								To set up the trigger settings, aside from setting up the basic configuration 
+								(common for all types of <a href="triggers.html">the triggers</a>,
+								it is necessary to configure additional settings:
+								
+								<ul>
+									<li><b>Com port</b> Name of the serial port. Typical name of serial port in Windows 
+									operating is <i>COMx</i>. Where x is a number of the serial port.
+									<li><b>Baud rate</b> Number of bits per second. Operating speed of the serial port.
+									<li><b>Bits</b> Number of bits which are one byte.
+									<li><b>Stop bits</b> Number of wait bits between sending or receiving bytes.
+									<li><b>Parity</b> Adds one bit (at the end of each byte) which controls data validity.
+									<li><b>RTS Pin</b> Three states are possible
+									<ul style="margin-top:0px; margin-bottom:0px;">
+										<li><b>Do not change</b> Does not change a pin state while trigger executes.
+										<li><b>Set to '1'</b> Sets high state while trigger executes.
+										<li><b>Set to '0'</b> Sets low state while trigger executes.
+									</ul>
+									<li><b>DTR Pin</b> Three states are possible
+									<ul style="margin-top:0px; margin-bottom:0px;">
+										<li><b>Do not change</b> Does not change a pin state while trigger executes.
+										<li><b>Set to '1'</b> Sets high state while trigger executes.
+										<li><b>Set to '0'</b> Sets low state while trigger executes.
+									</ul>	
+									<li><b>Send a command</b> Enables command sending while trigger executes.
+									<li><b>Command</b> Bytes to send. It is possible to edit message using two modes: 
+									<b>ASCI</b> or <b>HEX</b>. In ASCI mode command is typed using standard characters 
+									which are available on keyboard (letters, numbers, etc). In HEX mode it is possible 
+									to type any byte value by typing its hexadecimal value.
+									
+									
+								</ul>
+
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Contents</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>

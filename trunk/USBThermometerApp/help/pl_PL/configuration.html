@@ -1,0 +1,135 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Konfiguracja</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Konfiguracja</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Pomoc</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								Okno konfiguracji składa się z pięciu kart.
+								
+								<h2>Ogólne</h2>
+								
+								Umożliwia konfigurację podstawowych cech aplikacji.
+
+								<ul>
+									<li>
+										<b>Uruchamiaj podczas startu Windows</b> 
+										Zaznaczenie tej opcji dodaje do Rejestru systemowego wpis startujący aplikację podczas 
+										uruchamiania się systemu. Odznaczenie usuwa ten wpis z Rejestru.
+									<li>
+										<b>Uruchamiaj zminimalizowany</b>
+										Jeśli zaznaczono dodatkowo <i>Pokazuj ikonę w Tray'u</i> podczas startu aplikacji zostanie
+										dodana tylko ikona do paska systemowego, w przeciwnym wypadku okno programu zostanie zminimalizowane
+										podczas uruchamiania.
+									<li>
+										<b>Pokazuj ikonę w Tray'u</b>
+										Dodaje ikonę programu do paska systemowego.
+									<li>
+										<b>Zablokuj wielokrotne uruchamianie aplikacji</b>
+										Po zaznaczeniu tej opcji, gdy program został już uruchomiony i nastąpiła próba uruchomienia go po raz drugi,
+										aplikacja nie zostanie ponownie włączona, a okno programu już uruchomionego zostanie wyświetlone
+										(o ile było zminimalizowane).
+									<li>
+										<b>Przy minimalizowaniu schowaj do Tray'a</b>
+										Gdy zostanie kliknięty przycisk minimalizowania, a została zaznaczona ta opcja oraz opcja 
+										<i>Pokazuj ikonę w Tray'u</i>, okno główne programu zostanie zamknięte. Aplikacja będzie wciąż pracować,
+										ale nie będzie widoczna na pasku systemowym. Gdy opcja ta nie jest zaznaczona, program minimalizuje się
+										normalnie.
+									<li>
+										<b>Przy zamykaniu schowaj do Tray'a</b>
+										Ignoruje przycisk zamykania okna aplikacji. Jego kliknięcie powoduje zamknięcie okna głównego programu,
+										natomiast nie kończy działania aplikacji. Zakończenie aplikacji jest możliwe tylko po wybraniu
+										odpowiedniej opcji Paska Menu. Ustawienie jest ignorowane gdy nie zaznaczono <i>Pokazuj ikonę w Tray'u</i>.
+									<li>
+										<b>Jednostka temperatury</b>
+										Umożliwia wybór jednostki temperatury, która jest używana w aplikacji. Możliwy jest wybór pomiędzy
+										stopniami Celsiusza i Fahrenheita.
+									<li>
+										<b>Okres próbkowania</b>
+										Parametr konfiguruje co jaki czas wykonywane są pomiary. Możliwe jest ustawienie Okresu próbkowania 
+										z dokładnością do 1 sekundy. <font style="color:#FF0000;">Uwaga!!!</font> Jeśli ilość czujników podłączonych
+										do jednego urządzenia jest znaczna, możliwe jest że odczyt ze wszystkich czujników nie zmieści się
+										w podanym okresie. W takim przypadku pomiary będą wykonywane z maksymalną możliwą do uzyskania częstotliwością.
+								</ul>
+								
+								<h2>Opcje graficzne</h2>
+								
+								Konfiguruje preferowane kolory elementów <a href="graph.html">Wykresów</a>.
+								
+								<ul>
+									<li>
+										<b>Kolor tła</b>
+										Kolor tła Wykresu.
+									<li>
+										<b>Kolor pierwszoplanowy</b>
+										Kolor siatki układu współrzędnych, wartości i kursora.
+									<li>
+										<b>Preferowany kolor serii danych</b>
+										Są to preferowane kolory jakie otrzymują serie kolejno dodawanych czujników. Kolory te można następnie indywidualnie 
+										zmienić w ustawieniach <a href="graph.html">Wykresu</a>.
+								</ul>
+								
+								<h2>Baza danych</h2>
+								
+								Ustawienia i parser poleceń bazy danych.
+								
+								<ul>
+									<li>
+										<b>Plik bazy danych</b>
+										Wskazanie pliku w którym gromadzone są pomiary temperatury. Umożliwia zmianę położenia piliku bazy danych na dysku.										
+									<li>
+										<b>Linia komend bazy danych</b>
+										Umożliwia wykonywanie poleceń SQL na bazie danych bezpośrednio z poziomu aplikacji. Więcej informacji
+										na temat bazy danych w rozdziale <a href="database.html">Baza danych</a>
+								</ul>	
+
+								<h2>Język</h2>
+
+								Zakładka umożliwia zmianę języka używanego w programie.
+								
+								<h2>Połączenia</h2>
+								
+								Konfiguruje połączenia sieciowe wykonywane przez program podczas używania <a href="ethernet">Wyzwalaczy TCP/IP i UDP</a>,
+								umożliwiając konfigurację połączeń z pośrednictwem serwera Proxy.
+								
+								<ul>
+									<li>
+										<b>Nazwa hosta lub adres IP</b>
+										Adres sieciowy serwera Proxy.										
+									<li>
+										<b>Port</b>
+										Port przez który wykonywane są połączenia Proksy tego serwera.
+								</ul>
+								
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Zawartość</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>

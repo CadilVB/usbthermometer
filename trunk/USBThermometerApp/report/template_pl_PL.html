@@ -1,0 +1,84 @@
+<html>
+	<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"> 
+	<head>
+		<link rel="Stylesheet" type="text/css" href="style.css" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+	<center><table><tr><td>
+	
+	<div class="global">
+		
+		<div class="header">
+			<table><tr>
+			<td class="h">Raport : {foreach sensors} {sensor.name} {/foreach} </td>
+			<td class="timestamp">Od:<br />Do:</td>			
+			<td class="datetime">{date.begin}<br />{date.end}</td>
+			</tr></table>
+		</div>
+		<div class="separator"></div>
+		
+		<div class="content">
+			<div class="box">
+				<div class="box_header"><table><tr><td>Wykres</td></tr></table></div>
+				<img src="graph.png"></img>
+			</div>
+			
+			<div class="box">
+				<div class="box_header">
+					<table>
+					<tr>
+						<td class="parameter">Parametry</td>
+						{foreach sensors}
+							<td class="value">{sensor.name}</td>
+						{/foreach}
+					</tr>
+					</table>
+				</div>
+				<div class="box_content">
+					<table>
+					<tr>
+						<td class="parameter">Maximum</td>
+						{foreach sensors}
+							<td class="value">{sensor.max}</td>
+						{/foreach}
+					</tr>
+					<tr>
+						<td class="parameter">Minimum</td>
+						{foreach sensors}
+							<td class="value">{sensor.min}</td>
+						{/foreach}
+					</tr>
+					<tr>
+						<td class="parameter">Œrednia</td>
+						{foreach sensors}
+							<td class="value">{sensor.avg}</td>
+						{/foreach}
+					</tr>	
+					<tr>
+						<td class="parameter">Ró¿nica miêdzy Min a Max</td>
+						{foreach sensors}
+							<td class="value">{sensor.diff}</td>
+						{/foreach}
+					</tr>
+					<tr>
+						<td class="parameter">Trend</td>
+						{foreach sensors}
+							<td class="value">{sensor.trend}</td>
+						{/foreach}
+					</tr>
+					</table>
+				</div>
+			</div>
+			
+		</div>	
+		
+		<div class="separator"></div>
+		<div class="footer">
+			<a href="http://kni-electronics.eu">&copy; KNI Electronics<a/>
+		</div>
+	</div>
+	
+	</td></tr></table></center>
+	</body>
+</html>

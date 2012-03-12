@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Database</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Database</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Help</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								USB Thermometer use a <b>SQLite</b> engine as a database system. Thanks to this it is very easy to access data from third party
+								software. The database stores settings of sensors and temperature samples.
+								
+								<h2>Table <i>sensors</i></h2>
+								
+								Sensors settings and properties are stored in the following table:
+								
+								<div class="code"><code>
+								CREATE TABLE IF NOT EXISTS sensors( i INTEGER PRIMARY KEY ASC, type VARCHAR(16), medium VARCHAR(16), name VARCHAR(256), id BIGINT UNIQUE )
+								</code></div>
+								
+								Structure of the <b>sensors</b> table is as follows:
+								<table border="2" style="border: 2mm black; margin: 10px; margin-left:50px; margin-right:50px; width:100%" >
+									<tr>
+										<td width="15%"><b>Column name</b></td><td width="30%"><b>Data type</b></td><td><b>Description</b></td></b>
+									</tr>
+									<tr>
+										<td>i</td><td>INTEGER PRIMARY KEY ASC</td>
+										<td>Row index</td>
+									</tr>
+									<tr>
+										<td>type</td><td>VARCHAR(16)</td>
+										<td>Type of a sensor. Supported are two types: <b>DS18B20</b> i <b>DS18S20</b></td>										
+									</tr>
+									<tr>
+										<td>medium</td><td>VARCHAR(16)</td>
+										<td>Type of a medium. Only one is correct <b>TEMPERATURE</b></td>
+									</tr>	
+									<tr>
+										<td>name</td><td>VARCHAR(256)</td>
+										<td>Name of a sensor defined by the user and displayed in application</td>
+									</tr>	
+									<tr>
+										<td>id</td><td>BIGINT UNIQUE</td>
+										<td>ROM number of a sensor. It is also a serial number of the sensor</td>
+									</tr>										
+								</table>
+								
+								<h2>Sample's tables</h2>
+								
+								Temperature samples are stored in multiple tables of the same structure.
+								The name of table is formalized. It identifies a sensor as follows: <b>S[sensor.id]</b>. Where <i>sensor.id</i>
+								is the ROM number (in hexadecimal form) of the sensor stored in table <i>sensors</i>.
+								Every sensor has each sample's table. It has been made due to optimization of the database performance.
+								Syntax of the <b>sample's tables</b> is as follows:
+								
+								<div class="code"><code>
+								CREATE TABLE IF NOT EXISTS S<i>[sensor.id]</i>( dateOfCreation DATETIME PRIMARY KEY ASC, value REAL )
+								</code></div>
+								
+								Structure of the <b>sample's tables</b> is as follows
+								<table border="2" style="border: 2mm black; margin: 10px; margin-left:50px; margin-right:50px; width:100%" >
+									<tr>
+										<td width="15%"><b>Column name</b></td><td width="30%"><b>Data type</b></td><td><b>Description</b></td></b>
+									</tr>
+									<tr>
+										<td>dateOfCreation</td><td>DATETIME PRIMARY KEY ASC</td>
+										<td>Data and time of the measure</td>
+									</tr>
+									<tr>
+										<td>value</td><td>REAL</td>
+										<td>Measured value</td>
+									</tr>										
+								</table>							
+								
+								<h2>PRAGMA parameters</h2>
+								
+								The application database has followings PRAGMA settings:
+								
+								<div class="code"><code>
+									PRAGMA PAGE_SIZE = 4096<br/>
+									PRAGMA default_cache_size = 700000<br/>
+									PRAGMA cache_size = 700000<br/>
+                                </code></div>
+								
+								Adwanced user can change, add or remove those settings if it needs.
+
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Contents</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>

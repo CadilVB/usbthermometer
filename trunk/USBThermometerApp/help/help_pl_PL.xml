@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0_02" class="java.beans.XMLDecoder">
+    <object class="Visual.Help.HelpNode">
+	    <void property="contentURL">
+            <string>file:help/pl_PL/index.html</string>
+        </void>
+        <void property="title">
+            <string>Pomoc programu USB Thermometer</string>
+        </void>
+	
+	    <void method="add">
+            <object class="Visual.Help.HelpNode">
+                <void property="contentURL">
+                    <string>file:help/pl_PL/use.html</string>
+                </void>
+                <void property="title">
+                    <string>Podstawy obsługi</string>
+                </void>
+            </object>
+        </void>	
+	
+        <void method="add">
+            <object class="Visual.Help.HelpNode">
+                <void property="contentURL">
+                    <string>file:help/pl_PL/overview.html</string>
+                </void>
+                <void property="title">
+                    <string>Przegląd funkcjonalności</string>
+                </void>
+            </object>
+        </void>		
+		
+        <void method="add">
+            <object class="Visual.Help.HelpNode">
+                <void property="contentURL">
+                    <string>file:help/pl_PL/configuration.html</string>
+                </void>
+                <void property="title">
+                    <string>Konfiguracja</string>
+                </void>
+
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/database.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Baza danych</string>
+                        </void>
+                    </object>
+                </void>
+            </object>
+        </void>		
+		
+        <void method="add">
+            <object class="Visual.Help.HelpNode">
+                <void property="contentURL">
+                    <string>file:help/pl_PL/presentation.html</string>
+                </void>
+                <void property="title">
+                    <string>Formaty prezentacji danych</string>
+                </void>
+				
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/graph.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Wykres</string>
+                        </void>
+                    </object>
+                </void>	
+
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/bar.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Wykres słupkowy</string>
+                        </void>
+                    </object>
+                </void>		
+
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/table.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Tabela</string>
+                        </void>
+                    </object>
+                </void>	
+
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/report.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Raport</string>
+                        </void>
+                    </object>
+                </void>					
+				
+            </object>
+        </void>				
+
+        <void method="add">
+            <object class="Visual.Help.HelpNode">
+                <void property="contentURL">
+                    <string>file:help/pl_PL/triggers.html</string>
+                </void>
+                <void property="title">
+                    <string>Wyzwalacze</string>
+                </void>
+				
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/email.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Wyzwalacz powiadomień email</string>
+                        </void>
+                    </object>
+                </void>	
+				
+				<void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/notification.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Wyzwalacz powiadomień systemowych</string>
+                        </void>
+                    </object>
+                </void>	
+				
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/rs232.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Wyzwalacz RS-232</string>
+                        </void>
+                    </object>
+                </void>		
+
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/ethernet.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Wyzwalacz TCP/IP i UDP</string>
+                        </void>
+                    </object>
+                </void>		
+
+                <void method="add">
+                    <object class="Visual.Help.HelpNode">
+                        <void property="contentURL">
+                            <string>file:help/pl_PL/user.html</string>
+                        </void>
+                        <void property="title">
+                            <string>Wyzwalacz programowalny</string>
+                        </void>
+                    </object>
+                </void>						
+				
+            </object>
+        </void>		
+
+    </object>
+</java>

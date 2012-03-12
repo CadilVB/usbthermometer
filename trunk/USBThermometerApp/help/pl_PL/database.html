@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Baza danych</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Baza danych</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Pomoc</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								Program USB Thermometer używa jako systemu bazodanowego <b>SQLite</b>. Dzięki temu dostęp do wyników pomiarów z zewnątrz
+								jest bardzo prosty.	Baza danych przechowuje ustawienia czujników, oraz wyniki pomiarów.
+								
+								<h2>Tabela <i>sensors</i></h2>
+								
+								Dane dotyczące czujników są umieszczane w tabeli o następującej składni:
+								
+								<div class="code"><code>
+								CREATE TABLE IF NOT EXISTS sensors( i INTEGER PRIMARY KEY ASC, type VARCHAR(16), medium VARCHAR(16), name VARCHAR(256), id BIGINT UNIQUE )
+								</code></div>
+								
+								Struktura tabeli <b>sensors</b> jest następująca:
+								<table border="2" style="border: 2mm black; margin: 10px; margin-left:50px; margin-right:50px; width:100%" >
+									<tr>
+										<td width="15%"><b>Nazwa kolumny</b></td><td width="30%"><b>Typ danych</b></td><td><b>Opis</b></td></b>
+									</tr>
+									<tr>
+										<td>i</td><td>INTEGER PRIMARY KEY ASC</td><td>Indeks wiersza</td>
+									</tr>
+									<tr>
+										<td>type</td><td>VARCHAR(16)</td>
+										<td>Typ czujnika temperatury. Obsługiwane są dwa typy czujników: <b>DS18B20</b> i <b>DS18S20</b></td>
+									</tr>
+									<tr>
+										<td>medium</td><td>VARCHAR(16)</td>
+										<td>Typ medium czujnika, na chwilę obecną tylko jedno medium jest dozwolone <b>TEMPERATURE</b></td>
+									</tr>	
+									<tr>
+										<td>name</td><td>VARCHAR(256)</td>
+										<td>Nazwa czujnika zdefiniowana przez użytkownika i wyświetlana w programie</td>
+									</tr>	
+									<tr>
+										<td>id</td><td>BIGINT UNIQUE</td>
+										<td>Numer ROM czujnika, będący jego numerem seryjnym</td>
+									</tr>										
+								</table>
+								
+								<h2>Tabele Pomiarów</h2>
+								
+								Wyniki pomiarów przechowywane są w osobnych tabelach o takiej samej strukturze.
+								Nazwa tabeli jest sformalizowana i identyfikuje czujnik w następujący sposób <b>S[sensor.id]</b>. Gdzie 
+								<i>sensor.id</i> jest numerem ROM (w postaci heksadecymalnej) czujnika
+								przechowywanego w tabeli <i>sensors</i>. 
+								Każdy czujnik posiada osobną tabelę pomiarów, jest to związane z optymalizacją. Ponieważ data pomiaru musi być unikalna 
+								i jest także kluczem wiersza, wydajność przeszukiwania po dacie pomiaru jest o wiele większa niż gdyby
+								wszystkie pomiary były umieszczone w jednej tabeli.
+								Składnia Tabeli Pomiarów jest następująca:
+								
+								<div class="code"><code>
+								CREATE TABLE IF NOT EXISTS S<i>[sensor.id]</i>( dateOfCreation DATETIME PRIMARY KEY ASC, value REAL )
+								</code></div>
+								
+								Struktura tabeli <b>S<i>[sensor.id]</i></b> jest następująca:
+								<table border="2" style="border: 2mm black; margin: 10px; margin-left:50px; margin-right:50px; width:100%" >
+									<tr>
+										<td width="15%"><b>Nazwa kolumny</b></td><td width="30%"><b>Typ danych</b></td><td><b>Opis</b></td></b>
+									</tr>
+									<tr>
+										<td>dateOfCreation</td><td>DATETIME PRIMARY KEY ASC</td>
+										<td>Data/godzina wykonania pomiaru</td>
+									</tr>
+									<tr>
+										<td>value</td><td>REAL</td>
+										<td>Zmierzona wartość</td>
+									</tr>										
+								</table>							
+								
+								<h2>Parametry PRAGMA</h2>
+								
+								Baza ma ustawione domyślnie niektóre z parametrów optymalizujących jej pracę.
+								
+								<div class="code"><code>
+									PRAGMA PAGE_SIZE = 4096<br/>
+									PRAGMA default_cache_size = 700000<br/>
+									PRAGMA cache_size = 700000<br/>
+                                </code></div>
+								
+								Zaawansowany użytkownik może zmienić te ustawienia według własnych potrzeb.
+								
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Zawartość</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>

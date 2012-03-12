@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Wyzwalacze</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Wyzwalacze</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Pomoc</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								Wyzwalacze są funkcjami, które są wykonywane w momencie osiągnięcia zadanej temperatury. W programie
+								USB Thermometer istnieje sześć różnych Wyzwalaczy:
+								
+								<ul>
+									<li><a href="email.html">Wyzwalacz powiadomień email</a> Wysyła email na zadany adres w momencie 
+									przekroczenia zadanej temperatury.
+									<li><a href="notification.html">Wyzwalacz powiadomień systemowych</a> Wyświetla powiadomienie na
+									pasku systemowym i/lub odtwarza dźwięk z pliku WAV.
+									<li><a href="rs232.html">Wyzwalacz RS-232</a> Ustawia piny portu szeregowego i/lub wysyła zadeklarowany
+									strumień bajtów <i>komendę</i> przez ten port do podłączonego urządzenia.
+									<li><a href="ethernet.html">Wyzwalacz TCP/IP i UDP</a> Wysyła strumień bajtów <i>komendę</i> do zdalnego
+									komputera przez sieć Internet.
+									<li><a href="user.html">Wyzwalacz programowalny</a> Wykonuje program użytkownika.
+								</ul>															
+								
+								<h2>Dodawanie nowego Wyzwalacza</h2>
+								
+								W celu dodania nowego Wyzwalacza należy uruchomić okno konfiguracji Wyzwalaczy i kliknąć przycisk <b>Nowy</b>.
+								Następnie z rozwijalnej listy wybrać typ Wyzwalacza. 
+								
+								<h2>Stany Wyzwalaczy</h2>
+								
+								Nowo utworzony Wyzwalacz pozostaje nieaktywny. W oknie konfiguracji Wyzwalaczy z lewej strony znajduje się lista 
+								wszystkich Wyzwalaczy. Każdy z wyzwalaczy ma ikonę informującą użytkownika o jego stanie:
+								
+								<ul>
+									<li><img src="./../../graphics/tick-white.png"></img>&nbsp; Wyzwalacz nieaktywny.
+									<li><img src="./../../graphics/tick-circle.png"></img>&nbsp; Wyzwalacz aktywny.
+								</ul>
+								
+								Po skonfigurowaniu wyzwalacza należy go włączyć zaznaczając pole wyboru <b>Włączony</b> u góry okna konfiguracji.
+								Każdą operację zmiany konfiguracji Wyzwalacza (także jego aktywację) trzeba zatwierdzić klikając przycisk
+								<b>Zapisz</b>.
+								
+								<h2>Ustawienia podstawowe</h2>
+								
+								Przed uaktywnieniem niezbędna jest konfiguracja Wyzwalacza. Konfiguracja podstawowa (wspólna dla wszystkich Wyzwalaczy)
+								została opisana poniżej. Informacje szczegółowe konfiguracji Wyzwalaczy znajdują się w odpowiednich podrozdziałach.
+								
+								<ul>
+									<li><b>Nazwa</b> Nazwa wyzwalacza pozwalająca na jego odróżnienie od pozostałych wyzwalaczy.
+									<li><b>Czujnik</b> Czujnik na który ma reagować Wyzwalacz.
+									<li><b>Próg wyzwalania</b> Wartość temperatury powyżej lub poniżej której ma zostać wykonana operacja.
+									<li><b>Wyzwól poniżej/powyżej progu</b> Ustawienie konfigurujące czy Wyzwalacz ma być wykonany podczas wzrostu
+									temperatury powyżej progu, czy podczas spadku poniżej zadanego progu.
+									<li><b>Histereza</b> Opóźnienie na powtórne wykonanie operacji Wyzwalacza aż do momentu gdy temperatura osiągnie 
+									wartość mniejszą lub większą (zależnie od ustawienia <b>wyzwolenia powyżej/poniżej progu</b>) od wartości
+									progu plus wartość histerezy. Minimalna wartość histerezy wynosi 0.1 i musi być zawsze dodatnia.
+								</ul>
+									
+								<b>Przykład</b> 
+								Próg wyzwalania ustawiono na wartość 20.0, wyzwolenie na <i>powyżej progu</i>, a histerezę na 2.0. Temperatura rośnie
+								od wartości 15.0 do 22.0. W momencie osiągnięcia 20.1 następuje wyzwolenie. Następnie temperatura spada do wartości
+								19.0. Podczas spadku nie następuje wyzwolenie. Potem następuje wzrost temperatury do 23.0. Podczas wzrostu nie
+								następuje wyzwolenie (nie osiągnięto progu histerezy). Gdy temperatura spadnie poniżej 18.0 próg histerezy zostanie
+								osiągnięty i kolejny wzrost uruchomi Wyzwalacz.
+
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Zawartość</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>
