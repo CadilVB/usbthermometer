@@ -1,0 +1,62 @@
+# depslib dependency file v1.0
+1328012322 source:/home/pawelkn/Starter/USBThermometerLib_lnx/USBThermometerLib/usbThermometer.cpp
+	"USBThermometerLib_USBThermometerLib.h"
+	"ftd2xx.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<unistd.h>
+
+1317903321 /home/pawelkn/Starter/USBThermometerLib_lnx/USBThermometerLib/USBThermometerLib_USBThermometerLib.h
+	<jni.h>
+
+1327999738 /usr/lib/jdk1.7.0_02/include/jni.h
+	<stdio.h>
+	<stdarg.h>
+	"jni_md.h"
+
+1327999738 /usr/lib/jdk1.7.0_02/include/linux/jni_md.h
+
+1328009546 /home/pawelkn/Starter/USBThermometerLib_lnx/USBThermometerLib/ftd2xx.h
+	<pthread.h>
+	"WinTypes.h"
+
+1322493933 /home/pawelkn/Starter/USBThermometerLib_lnx/USBThermometerLib/WinTypes.h
+	<sys/time.h>
+
+1328100368 source:/home/pawelkn/Starter/USBThermometerLib-linux/usbThermometer.cpp
+	"USBThermometerLib_USBThermometerLib.h"
+	"ftd2xx.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<unistd.h>
+
+1328100260 /home/pawelkn/Starter/USBThermometerLib-linux/USBThermometerLib_USBThermometerLib.h
+	<jni.h>
+
+1328009546 /home/pawelkn/Starter/USBThermometerLib-linux/ftd2xx.h
+	<pthread.h>
+	"WinTypes.h"
+
+1322493933 /home/pawelkn/Starter/USBThermometerLib-linux/WinTypes.h
+	<sys/time.h>
+
+1328100368 source:/home/pawelkn/Starter/USBThermometerLib/usbThermometerLib-linux-i386/usbThermometer.cpp
+	"USBThermometerLib_USBThermometerLib.h"
+	"ftd2xx.h"
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<unistd.h>
+
+1328100260 /home/pawelkn/Starter/USBThermometerLib/usbThermometerLib-linux-i386/USBThermometerLib_USBThermometerLib.h
+	<jni.h>
+
+1328009546 /home/pawelkn/Starter/USBThermometerLib/usbThermometerLib-linux-i386/ftd2xx.h
+	<pthread.h>
+	"WinTypes.h"
+
+1322493933 /home/pawelkn/Starter/USBThermometerLib/usbThermometerLib-linux-i386/WinTypes.h
+	<sys/time.h>
+

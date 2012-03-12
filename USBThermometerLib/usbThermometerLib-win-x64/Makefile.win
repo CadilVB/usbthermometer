@@ -1,0 +1,34 @@
+# Project: USBThermometerLib
+# Makefile created by Dev-C++ 4.9.9.2
+
+CPP  = g++.exe
+CC   = gcc.exe
+WINDRES = windres.exe
+RES  = 
+OBJ  = usbThermometer.o $(RES)
+LINKOBJ  = usbThermometer.o $(RES)
+LIBS =  -L"lib" --no-export-all-symbols --add-stdcall-alias ftd2xx.lib  
+INCS =  -I"include"  -I"C:/Program Files/Java/jdk1.7.0_02/include/win32"  -I"C:/Program Files/Java/jdk1.7.0_02/include" 
+CXXINCS =  -I"include"  -I"C:/Program Files/Java/jdk1.7.0_02/include/win32"  -I"C:/Program Files/Java/jdk1.7.0_02/include" 
+BIN  = usbThermometerLib-win-x64.dll
+CXXFLAGS = $(CXXINCS) -DBUILDING_DLL=1  
+CFLAGS = $(INCS) -DBUILDING_DLL=1  
+RM = rm -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before usbThermometerLib-win-x64.dll all-after
+
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+DLLWRAP=dllwrap.exe
+DEFFILE=libusbThermometerLib-win-x64.def
+STATICLIB=libusbThermometerLib-win-x64.a
+
+$(BIN): $(LINKOBJ)
+	$(DLLWRAP) --output-def $(DEFFILE) --driver-name c++ --implib $(STATICLIB) $(LINKOBJ) $(LIBS) -o $(BIN)
+
+usbThermometer.o: usbThermometer.cpp
+	$(CPP) -c usbThermometer.cpp -o usbThermometer.o $(CXXFLAGS)
