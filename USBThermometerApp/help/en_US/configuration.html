@@ -1,0 +1,132 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Configuration</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Configuration</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Help</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								The configuration windows consists of five parts:
+								
+								<h2>General</h2>
+								
+								It allows to configure basic settings of the application.
+
+								<ul>
+									<li>
+										<b>Start with starting Windows</b> 
+										Selecting of this option causes adding an entry to the system registry with starts the application
+										when the operating system starts. Not selecting of this option removes the entry.
+									<li>
+										<b>Start minimized</b>
+										If selected <i>Show icon in tray</i>, it adds an icon to the system tray when the application starts. In
+										other case it runs the application in minimized state.
+									<li>
+										<b>Show icon in tray</b>
+										Adds an icon to the system tray.
+									<li>
+										<b>Permit only single instance of  the application</b>										
+										If this option has been selected and the application already is running, when a user is trying to start it again,
+										the application will not start. The user will be switched to the first instance of the application.
+										In other case the second instance of the application will run normally.
+									<li>
+										<b>Minimize to tray on minimize</b>
+										If this option and <i>Show icon in tray</i> are selected, the application main window will be hidden when 
+										the minimize button is pressed. In other case it minimizes normally.
+									<li>
+										<b>Minimize to tray on close</b>
+										If this option and <i>Show icon in tray</i> are selected, it ignores the close button of the main window.
+										When the close button has been pressed, it only hides the window (not close it). In that case choose 
+										<i>Close</i> option from the menu bar to close the application.
+									<li>
+										<b>Temperature unit</b>
+										It is possible to choose one of the two temperature units: Celsius or Fahrenheit. 
+									<li>
+										<b>Sampling period</b>
+										The parameter configures the sampling period. It is possible to set the Sampling period with accuracy of 1s.
+										<font style="color:#FF0000;">Notification!!!</font> If a number of connected sensors to the one USB Thermometer 
+										device is large, it is possible the sampling period will be expanded to the time of reading temperature from all 
+										sensors.
+								</ul>
+								
+								<h2>Visual</h2>
+								
+								Configures preferred colors of <a href="graph.html">Graphs</a>.
+								
+								<ul>
+									<li>
+										<b>Background color</b>
+										The color of the graph background.
+									<li>
+										<b>Foreground color</b>
+										The color of the graph grid, values and cursor
+									<li>
+										<b>Trace color</b>
+										Those are preferred colors of data sets added to the <a href="graph.html">Graph</a>. Data sets added one by one to the
+										graph will assume the selected trace colors.
+								</ul>
+								
+								<h2>Database</h2>
+								
+								Settings and the command parser of the database.
+								
+								<ul>
+									<li>
+										<b>Database file</b>
+										Selects the database file where the application data are stored. This option allows to change the path 
+										to the database file.
+									<li>
+										<b>Command parser</b>
+										It allows to run the sqlite3 commands. More information about the database you can find in the chapter
+										<a href="database.html">Database</a>.
+								</ul>	
+
+								<h2>Language</h2>
+
+								On this page it is possible to change a localization of the application.
+								
+								<h2>Connections</h2>
+								
+								Configures network connections run by the application when the <a href="ethernet">TCP/IP and UDP triggers</a> occurs.
+								Those settings allows to connect through a proxy server.
+								
+								<ul>
+									<li>
+										<b>Host name or IP address</b>
+										Network	address of the proxy server.									
+									<li>
+										<b>Port</b>
+										Port used to connect to the proxy server.
+								</ul>
+
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Contents</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="1.7.0" class="java.beans.XMLDecoder">
+ <object class="Tools.Configuration">
+  <void property="closeToTray">
+   <boolean>true</boolean>
+  </void>
+  <void property="database">
+   <object class="Engine.SQLite">
+    <void property="fileName">
+     <string>USBThermometer.db</string>
+    </void>
+   </object>
+  </void>
+  <void property="graphBackgroundColor">
+   <int>-1</int>
+  </void>
+  <void property="graphForegroundColor">
+   <int>-8355712</int>
+  </void>
+  <void property="guiMode">
+   <boolean>true</boolean>
+  </void>
+  <void property="locale">
+   <string>pl_PL</string>
+  </void>
+  <void property="lockMultipleStartsUp">
+   <boolean>true</boolean>
+  </void>
+  <void property="minimizeToTray">
+   <boolean>true</boolean>
+  </void>
+  <void property="proxyHost">
+   <string></string>
+  </void>
+  <void property="proxyPassword">
+   <string></string>
+  </void>
+  <void property="proxyPort">
+   <string></string>
+  </void>
+  <void property="proxyUser">
+   <string></string>
+  </void>
+  <void property="samplingRate">
+   <int>10</int>
+  </void>
+  <void property="set10PreferedColor">
+   <int>-16711681</int>
+  </void>
+  <void property="set1PreferedColor">
+   <int>-16737844</int>
+  </void>
+  <void property="set2PreferedColor">
+   <int>-16711936</int>
+  </void>
+  <void property="set3PreferedColor">
+   <int>-65536</int>
+  </void>
+  <void property="set4PreferedColor">
+   <int>-65281</int>
+  </void>
+  <void property="set5PreferedColor">
+   <int>-14336</int>
+  </void>
+  <void property="set6PreferedColor">
+   <int>-20561</int>
+  </void>
+  <void property="set7PreferedColor">
+   <int>-256</int>
+  </void>
+  <void property="set8PreferedColor">
+   <int>-16776961</int>
+  </void>
+  <void property="set9PreferedColor">
+   <int>-4144960</int>
+  </void>
+  <void property="showInTray">
+   <boolean>true</boolean>
+  </void>
+  <void property="startupOnWindowsStartUp">
+   <boolean>true</boolean>
+  </void>
+ </object>
+</java>

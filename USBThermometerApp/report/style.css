@@ -1,0 +1,25 @@
+body { background:#E9E9E9; font-family: Arial; }
+	
+table div.global { width: 750; background: white; padding: 5; align: center; margin: 0 auto; clear: both; }
+	
+div.header { width: auto; padding: 10px; }		
+	div.header table { width: 100%; clear: both; }
+	div.header td.h { font-size: 24; color: #0099cc; }
+	div.header td.timestamp { font-size: 12; color: #000000; text-align: right; }
+	div.header td.datetime { font-size: 12; color: #0099cc; text-align: right; width: 130; }
+
+div.separator { background-color: #0099cc; width: 750; margin-left: 0; height: 3px; clear: both; font-size: 1; margin-bottom: 20; }
+
+div.box { background: white; width: 644; margin-bottom: 20; margin-left: 53; margin-right: 53; }
+	div.box table { width: 640; table-layout: fixed; }
+	div.box td.parameter { }
+	div.box td.value { text-align: center; }
+
+div.box_header { background-color: #0099cc; width: 644; color: white; text-align: left; padding: 0; margin: 0; padding-left: 5; }
+	div.box_header table { color: white; }
+	
+div.box_content { width: 644; }
+	div.box_content td.parameter { padding-left: 20; }			
+	
+div.footer { margin-left: 330; }
+	div.footer a { color: #0099cc;  font-size: 12;}

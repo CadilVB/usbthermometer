@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Tabela</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Tabela</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Pomoc</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								Wyświetla tabelę zawierającą zmierzone wartość temperatur. Dodanie czujnika do wyświetlenia
+								odbywa się za pomocą techniki przeciągnij i upuść. Tabela zostaje automatycznie przeładowana
+								po dodaniu nowego czujnika do tabeli. Na pasku narządzi dostępne są następujące opcje:
+								
+								<ul>
+									<li><img src="./../../graphics/clock--pencil.png" />&nbsp;
+										<b>Konfiguracja zakresu danych</b> 
+										Wyświetla okno dialogowe konfigurujące wyświetlany zakres danych. Dostępne są trzy
+										główne tryby wyświetlania danych:
+										
+										<ul>
+											<li>
+												<b>Ostatnio zapisane</b> Wyświetla zadaną ilość ostatnio dodanych próbek temperatur do bazy danych.
+												W trybie tym pozostałe parametry wyświetlania nie są brane pod uwagę.
+											<li>
+												<b>Okres czasu</b> Wyświetla zmierzone temperatury w zadanym ściśle określonym zakresie czasu. 
+											<li>
+												<b>Ostatnie</b> Podobny tryb do <i>Okresu czasu</i> ale wyświetla pomiary wykonane w zakresie czasu
+												ustalonym względem bieżącej daty i godziny.
+										</ul>
+										
+										Próbki mogą zostać przefiltrowane ze względu na wartość temperatury jeśli ograniczony zostanie 
+										<b>Zakres wartości</b>. Domyślnie ustawiony jest maksymalny możliwy zakres, czyli wszystkie próbki
+										zostaną wyświetlone - bez względu na wartość temperatury. 
+										Możliwe jest także <b>posortowanie próbek ze względu na datę</b>. Próbki 
+										mogą zostać wyświetlone od najmłodszej do najstarszej lub na odwrót. <b>Określenie maksymalnej 
+										ilości wyświetlanych próbek</b> jest konieczne aby ograniczyć liczbę bajtów ładowanych z bazy danych.
+										
+										<br/><br/>
+										
+									<li><img src="./../../graphics/document-excel-csv.png" />&nbsp;
+										<b>Zapis tabeli</b> 
+										Zapisuje widoczną tabelę do pliku arkusza kalkulacyjnego, w celu dalszej obróbki.
+									<li><img src="./../../graphics/arrow-circle-double-135.png" />&nbsp;
+										<b>Odśwież</b> 
+										Przeładowuje tabelę. Użyteczna funkcja podczas korzystania z trybu <b>Ostatnio zapisane</b> i <b>Ostatnie</b>,
+										ponieważ dane w tabeli nie są odświeżane automatycznie tak jak ma to miejsce na <a href="graph.html">Wykresie</a>
+										i <a href="graph.html">Wykresie słupkowym</a>.
+									<li><img src="./../../graphics/cross-script.png" />&nbsp;
+										<b>Usunięcie czujnika</b> 
+										Usuwa czujnik z tabeli.									
+								</ul>
+
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Zawartość</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>

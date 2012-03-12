@@ -1,0 +1,78 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Wyzwalacz RS-232</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Wyzwalacz RS-232</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Pomoc</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+
+								Wyzwalacz RS-232 umożliwia sterowanie urządzeniem podłączonym do portu szeregowego z poziomu
+								programu USB Thermometer. <b>Tym samym portem COM może sterować wiele różnych Wyzwalaczy.</b>
+								Dzięki temu	możliwa jest konstrukcja rozbudowanego termostatu w wieloma źródłami pobudzeń.
+								
+								<br/><br/>
+								
+								Możliwe jest zarówno sterowanie pinami portu szeregowego jaki i wysyłanie zdefiniowanego
+								strumienia bajtów.
+								
+								W celu ustawienia Wyzwalacza, oprócz podstawowych ustawień wspólnych dla wszystkich 
+								<a href="triggers.html">Wyzwalaczy</a>,	konieczne jest skonfigurowanie dodatkowych ustawień:
+								
+								<ul>
+									<li><b>Com port</b> Nazwa portu szeregowego. Dla systemu Windows jest to <i>COMx</i>, gdzie x
+									jest numerem portu.
+									<li><b>Baud rate</b> Ilość bitów na sekundę. Określa prędkość transmisji portu szeregowego.
+									<li><b>Bity</b> Ilość bitów składających się na jeden bajt. Domyślnie jest to 8.
+									<li><b>Bity stopu</b> Ilość bitów a dokładniej odpowiednik czasu przesłania zadanej ilości bitów
+									oddzielających transmisję jednego bajtu od drugiego.
+									<li><b>Parzystość</b> Dodaje bit (na końcu każdego bajtu) kontrolujący poprawność przesyłanych danych.
+									<li><b>Pin RTS</b> Możliwe są trzy ustawienia:
+									<ul style="margin-top:0px; margin-bottom:0px;">
+										<li><b>Do not change</b> Stan pinu RTS nie zmieni się podczas wystąpienia wyzwolenia.
+										<li><b>Set to '1'</b> Pin RTS zostanie ustawiony w stan wysoki podczas wystąpienia wyzwolenia.
+										<li><b>Set to '0'</b> Pin RTS zostanie ustawiony w stan niski podczas wystąpienia wyzwolenia.
+									</ul>
+									<li><b>Pin DTR</b> Możliwe są trzy ustawienia:
+									<ul style="margin-top:0px; margin-bottom:0px;">
+										<li><b>Do not change</b> Stan pinu DTR nie zmieni się podczas wystąpienia wyzwolenia.
+										<li><b>Set to '1'</b> Pin DTR zostanie ustawiony w stan wysoki podczas wystąpienia wyzwolenia.
+										<li><b>Set to '0'</b> Pin DTR zostanie ustawiony w stan niski podczas wystąpienia wyzwolenia.
+									</ul>	
+									<li><b>Wyślij komendę</b> Włącza wysyłanie strumienia bajtów <i>komendy</i> podczas zdarzenia.
+									<li><b>Komenda</b> Bajty do wysłania. Możliwa jest edycja w dwóch trybach <b>ASCI</b> lub <b>HEX</b>.
+									W trybie ASCI wprowadza się komendę używając znaków standardowych (dostępnych na klawiaturze: liter,
+									liczb, znaków interpunkcyjnych). W trybie HEX można wprowadzić znak który nie jest dostępny na 
+									klawiaturze, wpisując jego wartość heksadecymalną.
+								</ul>
+
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Zawartość</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Triggers</title>
+        <link rel=STYLESHEET href="../hlp.css" type="text/css">
+    </head>
+    <body>
+        <div id="main">
+            <table border=0 cellpadding=0 cellspacing=0 width=100% height=100%>
+                <tr><td valign=top height=50>
+                        <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-bottom: #a4a4a4 1px solid; border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 0px; padding-bottom: 0px;">
+                            <tr><td valign=top align=left>
+									<h1>Triggers</h1>
+                                </td>
+                                <td valign=top align=right><h1>USB Thermometer</h1>
+                                    <div style="padding-top: 2px; padding-bottom: 10px;">Help</div>
+								</td></tr>
+                        </table>
+                    </td></tr>
+                <tr><td align=center valign=top>
+                        <table border=0 cellpadding=0 cellspacing=0 width=100% height=100% bgcolor=#ffffff>
+                            <tr><td valign=top style="padding: 10px; padding-left: 30px; padding-right: 30px;"><br/>
+							
+								Triggers are functions. Those functions are executed when temperature overs a specified threshold. 
+								USB Thermometer application has six different types of triggers:
+								
+								<ul>
+									<li><a href="email.html">Email notification trigger</a> Sends an email when the trigger occurs.
+									<li><a href="notification.html">System notification trigger</a> Displays notification in system tray 
+									or plays a sound.
+									<li><a href="rs232.html">RS-232 trigger</a> Changes state of serial port pins and/or sends a 
+									string of bytes (command) to a remote device.
+									<li><a href="ethernet.html">TCP/IP and UDP trigger</a> Sends a string of bytes (command) to a
+									remote computer or device using specified internet protocol.
+									<li><a href="user.html">User trigger</a> Executes user program.
+								</ul>															
+								
+								<h2>Adding a new trigger</h2>
+								
+								To manage triggers open the triggers configuration window from menu bar or toolbar. Click the <b>New</b> button
+								on the window form and choose the trigger type from the list with appears after you have pressed the button.
+								
+								<h2>The state of triggers</h2>
+								
+								The newly created trigger stays inactive. The triggers configuration window has a list of triggers on the left side.
+								The every trigger has an icon with identifies its state:
+								
+								<ul>
+									<li><img src="./../../graphics/tick-white.png"></img>&nbsp; The inactive trigger.
+									<li><img src="./../../graphics/tick-circle.png"></img>&nbsp; The active trigger.
+								</ul>
+								
+								After the trigger has been configured, it is indispensable to activate it. To do so check an <b>Enabled</b> checkbox
+								on the top of the configuration window. Every change of the trigger state or configuration must be confirmed. 
+								Click the <b>Save</b> button on the bottom off the window to save the trigger configuration and activate it.
+								
+								<h2>Basic settings</h2>
+								
+								Before activate the trigger, it is indispensable to configure it. The basic settings (common for all trigger types)
+								has been described below. Specifics triggers settings have been described in separated chapters.
+								
+								<ul>
+									<li><b>Name</b> Name of the trigger allows to distinguish it from the others on the triggers list.
+									<li><b>Sensor</b> Sensor with temperature changes executes the trigger.
+									<li><b>Threshold</b> The Trigger executes below or over the value with has been specified as the threshold.
+									<li><b>Trigger below or over threshold</b> The setting configures if the trigger executes below or over the
+									value specified as the threshold.
+									<li><b>Hysteresis</b> Next execution of the trigger is delayed until the temperature achieve the value less or 
+									bigger (it depends on the <b>Trigger below or over threshold</b> parameter) of the threshold value plus 
+									the hysteresis value. The hysteresis minimum value is 0.1 and must be always positive.
+									
+								</ul>
+									
+								<b>Example</b> 
+								
+								The threshold is set to 20.0, execution is set over the threshold, the hysteresis is set to 2.0. Temperature grows
+								from 15.0 to 22.0. When the temperature achieves 20.1 the trigger executes. Subsequently the temperature fails to
+								19.0. When the temperature is falling the trigger does not execute. After this the temperature grows again to 23.0.
+								When the temperature is growing the trigger does not execute because the hysteresis value has not been achieved.
+								After the temperature falls below the 18.0, the hysteresis value will be achieved and next grow of the temperature 
+								will execute the trigger.
+
+                                </td></tr>
+                            <tr><td valign=bottom>
+                                    <table cellSpacing=0 cellPadding=0 width=100% bgcolor=#f4f4f4 style="border-top: #a4a4a4 1px solid; padding-left: 10px; padding-right: 10px; padding-top: 8px; padding-bottom: 0px;">
+                                        <tr><td valign=top align=left><b>USB Thermometer</b>
+                                                <div style="padding-top: 2px; padding-bottom: 10px;"><a href="index.html">Contents</a>
+                                                </div></td>
+                                            <td valign=top align=right>&copy; KNI Electronics<br><a href="kni-electronics.com">kni-electronics.com</a></td></tr>
+                                    </table>
+                                </td></tr>
+                        </table>
+                    </td></tr>
+            </table>
+        </div>
+    </body>
+</html>
