@@ -17,7 +17,8 @@ RM = rm -f
 
 .PHONY: all all-before all-after clean clean-custom
 
-all: all-before $(BIN_x64) $(BIN_i386) all-after
+x64: $(BIN_x64)
+i386: $(BIN_i386)
 
 clean: clean-custom
 	${RM} $(LINKOBJ_x64) $(BIN_x64) $(LINKOBJ_i386) $(BIN_i386)
