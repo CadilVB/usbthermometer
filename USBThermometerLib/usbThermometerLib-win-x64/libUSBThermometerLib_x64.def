@@ -1,9 +1,0 @@
-; c:\Dev-Cpp\Bin\dlltool --base-file C:\Users\PAWE~1\AppData\Local\Temp\cca03960.base --output-exp USBThermometerLib_x64.exp --dllname USBThermometerLib_x64.dll --output-def libUSBThermometerLib_x64.def --no-export-all-symbols --add-stdcall-alias --exclude-symbol=DllMainCRTStartup --def C:\Users\PAWE~1\AppData\Local\Temp\cca03960.def --output-lib libUSBThermometerLib_x64.a
-EXPORTS
-	Java_USBThermometerLib_USBThermometerLib_GetDeviceSerial @ 1
-	Java_USBThermometerLib_USBThermometerLib_GetDevicesIds @ 2
-	Java_USBThermometerLib_USBThermometerLib_GetSensorsIds @ 3
-	Java_USBThermometerLib_USBThermometerLib_GetTemperture @ 4
-	Java_USBThermometerLib_USBThermometerLib_OpenDevice @ 5
-	Java_USBThermometerLib_USBThermometerLib_StartConversion @ 6
-	Java_USBThermometerLib_USBThermometerLib_CloseDevice @ 7
