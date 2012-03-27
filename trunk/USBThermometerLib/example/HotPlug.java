@@ -1,15 +1,15 @@
 import USBThermometerLib.ExceptionErrors.*;
 import USBThermometerLib.*;
 
-class USBThermometerLibExample {
+class HotPlug {
 
 	private final Driver driver;
 
 	public static void main(String args[]) {
-		new USBThermometerLibExample();
+		new HotPlug();
 	}
 	
-	public USBThermometerLibExample() {
+	public HotPlug() {
 		driver = USBThermometerDriver.getInstance();
 	
 		try {			
