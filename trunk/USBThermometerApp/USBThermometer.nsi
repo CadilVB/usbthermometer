@@ -159,13 +159,6 @@ Section "Device drivers" ps_drv
 
 SectionEnd
 
-Section "Source code" ps_src
-
-  SetOutPath $INSTDIR\src 
-  File /r /x .svn src\*.*
-  
-SectionEnd
-
 ;--------------------------------
 ;Uninstaller Section
 
@@ -220,8 +213,7 @@ Function .onInit
   !insertmacro MUI_LANGDLL_DISPLAY
 
   !insertmacro SelectSection ${ps_prog}
-  !insertmacro UnselectSection ${ps_drv}  
-  !insertmacro UnselectSection ${ps_src}
+  !insertmacro UnselectSection ${ps_drv}
 
 FunctionEnd
 
