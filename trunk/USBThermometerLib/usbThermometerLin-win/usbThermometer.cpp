@@ -476,7 +476,7 @@ unsigned char owWrite( JNIEnv *env, FT_HANDLE ftHandle, unsigned char data )
         }
     }
 
-    printd("owWrite: write\n"); if( FT_Write( ftHandle, sendBuffer, 8, &bytesWritten ) ) { die(env); return 1; }
+    printd("owWrite: write 0x%02x\n", data ); if( FT_Write( ftHandle, sendBuffer, 8, &bytesWritten ) ) { die(env); return 1; }
     
     return 0;
 }
@@ -516,12 +516,15 @@ unsigned char owRead( JNIEnv *env, FT_HANDLE ftHandle, unsigned char *result )
     for (int i = 0; i < 8; i++)
     {   
         bytesReturned = 0;   
-        printd("owRead: read\n");  if( FT_Read( ftHandle, readBuffer, 1, &bytesReturned ) ) { die(env); return 1; }
-             
-        if (readBuffer[0] == 0xff) {
+        printd("owRead: read ");  if( FT_Read( ftHandle, readBuffer, 1, &bytesReturned ) ) { die(env); return 1; }
+		printd("0x%02x\n", readBuffer[0]);
+		
+        if ( (readBuffer[0] == 0xff) || (readBuffer[0] == 0xfe) ) {
             *result |= (byte)(1 << i);
         }
     }
+	
+	printd( "owRead: red 0x%02x\n", *result );
 
     return 0;
 }
