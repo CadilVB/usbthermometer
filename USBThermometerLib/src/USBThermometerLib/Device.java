@@ -16,7 +16,7 @@ public abstract class Device implements AutoCloseable {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.B3E193BE-D6C9-3A2C-13A4-9BFAD818D9A7]
     // </editor-fold> 
-    protected int hwHandle;
+    protected long hwHandle;
 
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.918F54DE-5BAE-A3DF-E130-ADDA0380F6E1]
@@ -36,7 +36,7 @@ public abstract class Device implements AutoCloseable {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.B242DFA0-F849-4F06-5EB7-3BB950B5E60D]
     // </editor-fold> 
-    protected Device (int hwHandle, Driver driver) throws DeviceError {
+    protected Device (long hwHandle, Driver driver) throws DeviceError {
         this.hwHandle = hwHandle;
         this.driver = driver;
         sensors = new ArrayList<Sensor>();
@@ -46,7 +46,7 @@ public abstract class Device implements AutoCloseable {
         return driver;
     }
 
-    public int getHwHandle() {
+    public long getHwHandle() {
         return hwHandle;
     }
 

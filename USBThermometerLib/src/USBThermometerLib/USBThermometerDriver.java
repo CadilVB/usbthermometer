@@ -24,12 +24,12 @@ public class USBThermometerDriver implements Driver {
     }
 
     @Override
-    public synchronized void CloseDevice(int devHandle) throws DeviceError {
+    public synchronized void CloseDevice(long devHandle) throws DeviceError {
             usbThermometerLib.CloseDevice(devHandle);
     }
 
     @Override
-    public synchronized String GetDeviceSerial(int devHandle) throws DeviceError {
+    public synchronized String GetDeviceSerial(long devHandle) throws DeviceError {
             return usbThermometerLib.GetDeviceSerial(devHandle);
     }
 
@@ -39,22 +39,22 @@ public class USBThermometerDriver implements Driver {
     }
 
     @Override
-    public synchronized byte[][] GetSensorsIds(int devHandle) throws CrcError, SearchError, DeviceError {
+    public synchronized byte[][] GetSensorsIds(long devHandle) throws CrcError, SearchError, DeviceError {
             return usbThermometerLib.GetSensorsIds(devHandle);
     }
 
     @Override
-    public synchronized double GetTemperture(int devHandle, byte[] sensorId) throws CrcError, DeviceNotSupported, DeviceError {
+    public synchronized double GetTemperture(long devHandle, byte[] sensorId) throws CrcError, DeviceNotSupported, DeviceError {
             return usbThermometerLib.GetTemperture(devHandle, sensorId);
     }
 
     @Override
-    public synchronized int OpenDevice(int devId) throws DeviceError {
+    public synchronized long OpenDevice(int devId) throws DeviceError {
             return usbThermometerLib.OpenDevice(devId);
     }
 
     @Override
-    public synchronized void StartConversion(int devHandle) throws DeviceError {
+    public synchronized void StartConversion(long devHandle) throws DeviceError {
             usbThermometerLib.StartConversion(devHandle);
     }
     

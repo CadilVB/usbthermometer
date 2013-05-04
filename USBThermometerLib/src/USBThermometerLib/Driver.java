@@ -16,18 +16,18 @@ import USBThermometerLib.ExceptionErrors.CrcError;
  */
 public interface Driver {
 
-    void CloseDevice(int devHandle) throws DeviceError;
+    void CloseDevice(long devHandle) throws DeviceError;
 
-    String GetDeviceSerial(int devHandle) throws DeviceError;
+    String GetDeviceSerial(long devHandle) throws DeviceError;
 
     int[] GetDevicesIds() throws DeviceError;
 
-    byte[][] GetSensorsIds(int devHandle) throws CrcError, SearchError, DeviceError;
+    byte[][] GetSensorsIds(long devHandle) throws CrcError, SearchError, DeviceError;
 
-    double GetTemperture(int devHandle, byte[] sensorId) throws CrcError, DeviceNotSupported, DeviceError;
+    double GetTemperture(long devHandle, byte[] sensorId) throws CrcError, DeviceNotSupported, DeviceError;
 
-    int OpenDevice(int devId) throws DeviceError;
+    long OpenDevice(int devId) throws DeviceError;
 
-    void StartConversion(int devHandle) throws DeviceError;
+    void StartConversion(long devHandle) throws DeviceError;
     
 }

@@ -5,36 +5,26 @@
 
 WORKDIR = `pwd`
 
-CXX = g++
-LD = g++
+CXX = gcc
+LD = gcc
 
 INC =  -I/usr/lib/jvm/java-7-openjdk-amd64/include -I/usr/lib/jvm/java-7-openjdk-amd64/include/linux
 CFLAGS =  -Wall -fexceptions -O2
 LIB =  -lftd2xx
-LDFLAGS = -s
-LDFLAGS_DM = --no-export-all-symbols --add-stdcall-alias -s
-
-OUT_i386 = ./../usbThermometerLib-linux-i386.so
-OBJ_i386 = usbThermometerLib-linux-i386.o
+LDFLAGS =
 
 OUT_x64 = ./../usbThermometerLib-linux-x64.so
 OBJ_x64 = usbThermometerLib-linux-x64.o
 
-all: out_i386 out_x64
-
-out_i386: $(OBJ_i386)
-	$(LD) -shared $(LDFLAGS) $(OBJ_i386) $(LIB) -o $(OUT_i386)
-
-$(OBJ_i386): usbThermometer.cpp
-	$(CXX) -m32 $(CFLAGS) $(INC) -c usbThermometer.cpp -o $(OBJ_i386)
+all: out_x64
 
 out_x64: $(OBJ_x64)
-	$(LD) -shared $(LDFLAGS) $(OBJ_x64) $(LIB) -o $(OUT_x64)
+	$(LD) $(LDFLAGS) $(OBJ_x64) $(LIB) -o $(OUT_x64) -shared
 
 $(OBJ_x64): usbThermometer.cpp
-	$(CXX) -m64 $(CFLAGS) $(INC) -c usbThermometer.cpp -o $(OBJ_x64)
+	$(CXX) -m64 $(CFLAGS) $(INC) -c usbThermometer.cpp -o $(OBJ_x64) -fPIC
 
 clean: 
-	rm -f $(OBJ_i386) $(OUT_i386) $(OBJ_x64) $(OUT_x64)
+	rm -f $(OBJ_x64) $(OUT_x64)
 
 
