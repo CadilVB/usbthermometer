@@ -163,7 +163,7 @@ public class Host implements Runnable {
 
         public DeviceThread(int deviceId) {
             try {
-                int hwhandle = driver.OpenDevice(deviceId);
+                long hwhandle = driver.OpenDevice(deviceId);
                 device = new USBThermometerDevice( hwhandle, driver );
                 devices.add(device);
 
