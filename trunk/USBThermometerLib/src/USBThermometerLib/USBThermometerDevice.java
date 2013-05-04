@@ -15,7 +15,7 @@ public class USBThermometerDevice extends Device {
     // <editor-fold defaultstate="collapsed" desc=" UML Marker "> 
     // #[regen=yes,id=DCE.576CF7C6-584F-04AC-68C2-07B649D58C08]
     // </editor-fold> 
-    public USBThermometerDevice (int hwHandle, Driver driver) throws DeviceError {
+    public USBThermometerDevice (long hwHandle, Driver driver) throws DeviceError {
         super(hwHandle, driver);
 
         serialNumber = driver.GetDeviceSerial(hwHandle);

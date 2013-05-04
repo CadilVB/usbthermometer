@@ -48,6 +48,7 @@ public abstract class TemperatureSensor extends Sensor {
                             lastTemperature = temperature;
                         }
                     } catch (CrcError ex) {
+                        Logger.getLogger("USBThermometer").log(Level.ALL, null, ex);
                     }
                 }
             } catch (DeviceNotSupported ex) {

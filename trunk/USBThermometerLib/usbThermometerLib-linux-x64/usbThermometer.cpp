@@ -2,11 +2,14 @@
 
 #include "USBThermometerLib_USBThermometerLib.h"
 
-#include <windows.h>
-
 #include "ftd2xx.h"
 
-#define DEBUG 0
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+#define DEBUG 1
 
 #define printd if( DEBUG ) printf
 
@@ -70,14 +73,13 @@ JNIEXPORT jintArray JNICALL Java_USBThermometerLib_USBThermometerLib_GetDevicesI
 
 	if (ftStatus == FT_OK) {
 		for (int i = 0; i < iNumDevs; i++) {
-			if(devInfo[i].Type == FT_DEVICE_232R) {
-                   
-                printd("Open\n");  
-                
-                if( FT_Open( i, &ftHandle ) == FT_OK ) {                                           
+
+                printd("Open\n");
+
+                if( FT_Open( i, &ftHandle ) == FT_OK ) {
 				    ftStatus = FT_GetDeviceInfo( ftHandle, &ftDevice, &ID, SerialNumber, Description, Dummmy);
 				    if( FT_Close((FT_HANDLE)ftHandle) ) { die(env);	return NULL; }
-                			
+
 				    if(ftStatus == FT_OK) {
                       if( strcmp("USB Thermometer", Description) == 0 ) {
                         devIds[ NoDevice++ ] = i;
@@ -89,10 +91,9 @@ JNIEXPORT jintArray JNICALL Java_USBThermometerLib_USBThermometerLib_GetDevicesI
                       printd("  LocId=0x%x\n",LocId);
                       printd("  SerialNumber=%s\n",SerialNumber);
                       printd("  Description=%s\n",Description);
-                      printd("  ftHandle=0x%x\n",ftHandle);
+                      printd("  ftHandle=%lu\n",ftHandle);
                     }
                 }
-            }
 		}
 
         result = env->NewIntArray(NoDevice);
@@ -113,16 +114,17 @@ JNIEXPORT jint JNICALL Java_USBThermometerLib_USBThermometerLib_OpenDevice
 {
     FT_HANDLE ftHandle;
 	printd("Open\n");  if( FT_Open( i, &ftHandle ) ) { die(env); return 0; }
+	printd("  ftHandle=%lu\n",ftHandle);
 	printd("SetDataCharacteristics\n");  if( FT_SetDataCharacteristics( ftHandle, FT_BITS_8, FT_STOP_BITS_2, FT_PARITY_NONE ) ) { die(env); return 0; }
 	printd("SetLatency\n");  if( FT_SetLatencyTimer( ftHandle, 2 ) ) { die(env); return 0; }
     printd("SetTimeouts\n"); if( FT_SetTimeouts( ftHandle, 10, 10 ) ) { die(env); return 0; }
-    return ((jint*)&ftHandle)[0];
+    return ((jlong)ftHandle);
 }
 
 JNIEXPORT void JNICALL Java_USBThermometerLib_USBThermometerLib_CloseDevice
   (JNIEnv *env, jobject obj, jint ftHandle)
 {
-   if( FT_ClrRts((FT_HANDLE)ftHandle) ) { die(env); return; }                 
+   if( FT_ClrRts((FT_HANDLE)ftHandle) ) { die(env); return; }
    if( FT_Close((FT_HANDLE)ftHandle) ) { die(env); return; }
 }
 
@@ -131,11 +133,13 @@ JNIEXPORT jstring JNICALL Java_USBThermometerLib_USBThermometerLib_GetDeviceSeri
 {
     jstring result;
 
-	unsigned long ChipID = 0;
-	char SerialNumber[256], Description[256];
-	FT_DEVICE ftDevice;		
-
-	if( FT_GetDeviceInfo( (FT_HANDLE)ftHandle, &ftDevice, &ChipID, SerialNumber, Description, 0 ) ) { die(env); return NULL; }
+	DWORD ChipID = 0;
+	char SerialNumber[256], Description[256], Dummy[256];
+	FT_DEVICE ftDevice;
+	
+	printd("  ftHandle=%lu\n",ftHandle);
+	printd("GetDeviceInfo\n"); FT_GetDeviceInfo( (FT_HANDLE)ftHandle, &ftDevice, &ChipID, SerialNumber, Description, Dummy );
+	printd("  SerialNumber=%s\n",SerialNumber);
 
     result = env->NewStringUTF(SerialNumber);
     if (result == NULL) {
@@ -173,7 +177,7 @@ JNIEXPORT jobjectArray JNICALL Java_USBThermometerLib_USBThermometerLib_GetSenso
     device_counter = 0;
     LastDiscrepancy = 0;
     LastDeviceFlag = FALSE;
-    
+
     if( FT_ClrRts(ftHandle) ) { die(env); return NULL; }
 
     //powtarzaj az znajdziesz wszystkie uklady 1-wire
@@ -290,12 +294,12 @@ JNIEXPORT jobjectArray JNICALL Java_USBThermometerLib_USBThermometerLib_GetSenso
            ThrowError( env, UNKNOWN_ERROR );
            return NULL; /* out of memory error thrown */
         }
-        
+
         if( crc8( (unsigned char*)&dane[i][0], 7 ) != (unsigned char)dane[i][7] ) {
             ThrowError( env, CRC_ERROR );
             return NULL;
         }
-        
+
         env->SetByteArrayRegion(iarr, 0, 8, &dane[i][0]);
         env->SetObjectArrayElement(result, i, iarr);
         env->DeleteLocalRef(iarr);
@@ -313,7 +317,7 @@ JNIEXPORT void JNICALL Java_USBThermometerLib_USBThermometerLib_StartConversion
 
 	if( owReset( env, ftHandle) ) { die(env); return; }
     if( owWrite( env, ftHandle, 0xcc) ) { die(env); return; }
-    if( FT_SetRts(ftHandle) ) { die(env); return; }    
+    if( FT_SetRts(ftHandle) ) { die(env); return; }
     if( owWrite( env, ftHandle, 0x44) ) { die(env); return; }
 }
 
@@ -331,7 +335,7 @@ JNIEXPORT jdouble JNICALL Java_USBThermometerLib_USBThermometerLib_GetTemperture
 
     unsigned char recData[8];
     unsigned char crc;
-    
+
     if( FT_ClrRts(ftHandle) ) { die(env); return 0; }
 
     if( owReset( env, ftHandle) ) { die(env); return 0; }
@@ -355,18 +359,18 @@ JNIEXPORT jdouble JNICALL Java_USBThermometerLib_USBThermometerLib_GetTemperture
     double temperature = 0;
     switch( carr[0] ) {
         case 0x10:
-            if( recData[1] & 0x80 ) {                                            
-               temperature = (double)(-((-(recData[1] * 0x100 + recData[0])) & 0xffff)) / 2;            
+            if( recData[1] & 0x80 ) {
+               temperature = (double)(-((-(recData[1] * 0x100 + recData[0])) & 0xffff)) / 2;
             } else {
-               temperature = (double)(recData[1] * 0x100 + recData[0]) / 2; 
-            } 
+               temperature = (double)(recData[1] * 0x100 + recData[0]) / 2;
+            }
             break;
-        case 0x28:  
-            if( recData[1] & 0x80 ) {                                            
-               temperature = (double)(-((-(recData[1] * 0x100 + recData[0])) & 0xffff)) / 16;            
+        case 0x28:
+            if( recData[1] & 0x80 ) {
+               temperature = (double)(-((-(recData[1] * 0x100 + recData[0])) & 0xffff)) / 16;
             } else {
-               temperature = (double)(recData[1] * 0x100 + recData[0]) / 16; 
-            }          
+               temperature = (double)(recData[1] * 0x100 + recData[0]) / 16;
+            }
             break;
         default:
             ThrowError( env, DEVICE_NOT_SUPPORTED );
@@ -443,7 +447,7 @@ unsigned char owReset( JNIEnv *env, FT_HANDLE ftHandle )
     printd("owReset: read\n");  if( FT_Read( ftHandle, readBuffer, 2, &bytesReturned ) ) { die(env); return 1; }
 
     printd("owReset: byte returned: 0x%02x 0x%02x\n", readBuffer[0], readBuffer[1] );
-    
+
     return 0;
 }
 
@@ -476,8 +480,8 @@ unsigned char owWrite( JNIEnv *env, FT_HANDLE ftHandle, unsigned char data )
         }
     }
 
-    printd("owWrite: write 0x%02x\n", data ); if( FT_Write( ftHandle, sendBuffer, 8, &bytesWritten ) ) { die(env); return 1; }
-    
+    printd("owWrite: write\n"); if( FT_Write( ftHandle, sendBuffer, 8, &bytesWritten ) ) { die(env); return 1; }
+
     return 0;
 }
 
@@ -505,26 +509,23 @@ unsigned char owRead( JNIEnv *env, FT_HANDLE ftHandle, unsigned char *result )
 
     printd("owRead: write\n"); if( FT_Write( ftHandle, sendBuffer, 8, &bytesWritten ) ) { die(env); return 1; }
 
-    timeout = 10; 
+    timeout = 10;
     printd("owRead: queue \n"); if( FT_GetQueueStatus( ftHandle, &rxBytes ) ) { die(env); return 1; }
-    while( ( rxBytes < 8 ) && (timeout-- > 0 ) ) {    
-       Sleep(1);  
+    while( ( rxBytes < 8 ) && (timeout-- > 0 ) ) {
+       usleep(1000);
        printd("owRead: queue %i\n", 1000 - timeout); if( FT_GetQueueStatus( ftHandle, &rxBytes ) ) { die(env); return 1; }
     }
     if( timeout == 0 ) { die(env); return 1; }
 
     for (int i = 0; i < 8; i++)
-    {   
-        bytesReturned = 0;   
-        printd("owRead: read ");  if( FT_Read( ftHandle, readBuffer, 1, &bytesReturned ) ) { die(env); return 1; }
-		printd("0x%02x\n", readBuffer[0]);
-		
-        if ( (readBuffer[0] == 0xff) || (readBuffer[0] == 0xfe) ) {
-            *result |= (byte)(1 << i);
+    {
+        bytesReturned = 0;
+        printd("owRead: read\n");  if( FT_Read( ftHandle, readBuffer, 1, &bytesReturned ) ) { die(env); return 1; }
+
+        if (readBuffer[0] == 0xff) {
+            *result |= (char)(1 << i);
         }
     }
-	
-	printd( "owRead: red 0x%02x\n", *result );
 
     return 0;
 }
@@ -557,7 +558,7 @@ unsigned char owWriteBit( JNIEnv *env, FT_HANDLE ftHandle, unsigned char data )
     }
 
     printd("owWriteBit: write %i\n", (data ? 1 : 0) ); if( FT_Write( ftHandle, sendBuffer, 1, &bytesWritten ) ) { die(env); return 1; }
-    
+
     return 0;
 }
 
@@ -568,7 +569,7 @@ unsigned char owReadBit( JNIEnv *env, FT_HANDLE ftHandle, unsigned char *result 
     unsigned char sendBuffer[1];
     DWORD bytesWritten;
     DWORD bytesReturned;
-    DWORD rxBytes;    
+    DWORD rxBytes;
     int timeout;
 
     printd("__owReadBit__\n");
@@ -585,16 +586,16 @@ unsigned char owReadBit( JNIEnv *env, FT_HANDLE ftHandle, unsigned char *result 
 
     sendBuffer[0] = 0xff;
     printd("owReadBit: write\n"); if( FT_Write( ftHandle, sendBuffer, 1, &bytesWritten ) ) { die(env); return 1; }
-    
+
     timeout = 10;
     printd("owReadBit: queue\n"); if( FT_GetQueueStatus( ftHandle, &rxBytes ) ) { die(env); return 1; }
-    while( ( rxBytes == 0 ) && (timeout-- > 0 ) ) {  
-        Sleep(1);    
+    while( ( rxBytes == 0 ) && (timeout-- > 0 ) ) {
+        usleep(1000);
         printd("owReadBit: queue %i\n", 1000 - timeout); if( FT_GetQueueStatus( ftHandle, &rxBytes ) ) { die(env); return 1; }
     }
     if( timeout == 0 ) { die(env); return 1; }
-    
-    bytesReturned = 0;   
+
+    bytesReturned = 0;
     printd("owRead: read\n");  if( FT_Read( ftHandle, readBuffer, 1, &bytesReturned ) ) { die(env); return 1; }
 
     printd("owReadBit: bytesReturned %i: ", bytesReturned );

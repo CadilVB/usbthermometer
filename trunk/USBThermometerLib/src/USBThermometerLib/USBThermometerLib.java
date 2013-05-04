@@ -11,17 +11,17 @@ public class USBThermometerLib {
 
     public native int[] GetDevicesIds() throws DeviceError;
 
-    public native int OpenDevice(int devId) throws DeviceError;
+    public native long OpenDevice(int devId) throws DeviceError;
 
-    public native void CloseDevice(int devHandle) throws DeviceError;
+    public native void CloseDevice(long devHandle) throws DeviceError;
 
-    public native String GetDeviceSerial(int devHandle) throws DeviceError;
+    public native String GetDeviceSerial(long devHandle) throws DeviceError;
 
-    public native byte[][] GetSensorsIds(int devHandle) throws CrcError, SearchError, DeviceError;
+    public native byte[][] GetSensorsIds(long devHandle) throws CrcError, SearchError, DeviceError;
 
-    public native void StartConversion(int devHandle) throws DeviceError;
+    public native void StartConversion(long devHandle) throws DeviceError;
 
-    public native double GetTemperture(int devHandle, byte[] sensorId) throws CrcError, DeviceNotSupported, DeviceError;
+    public native double GetTemperture(long devHandle, byte[] sensorId) throws CrcError, DeviceNotSupported, DeviceError;
 
     static {
         LibraryLoader.LIBRARY_NAME = "usbThermometerLib";

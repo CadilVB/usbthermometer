@@ -49,20 +49,20 @@ public class LibraryLoader {
             if (os.toLowerCase().contains("win")) {
                 path = new File(path).getAbsolutePath() + "\\";
                 if ("64".equals(System.getProperty("sun.arch.data.model", "?"))) {
-                    System.load(path + LIBRARY_NAME + "-win-x64.dll");
-                    System.out.println("Load library " + path + LIBRARY_NAME + "-win-x64.dll");
-                } else {
-                    System.load(path + LIBRARY_NAME + "-win-i386.dll");
+		    System.out.println("Load library " + path + LIBRARY_NAME + "-win-x64.dll");
+                    System.load(path + LIBRARY_NAME + "-win-x64.dll");            
+                } else {                
                     System.out.println("Load library " + path + LIBRARY_NAME + "-win-i386.dll");
+                    System.load(path + LIBRARY_NAME + "-win-i386.dll");
                 }
             } else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
                 path = new File(path).getAbsolutePath() + "/";
-                if ("64".equals(System.getProperty("sun.arch.data.model", "?"))) {
-                    System.load(path + LIBRARY_NAME + "-linux-x64.so");
+                if ("64".equals(System.getProperty("sun.arch.data.model", "?"))) {                
                     System.out.println("Load library " + path + LIBRARY_NAME + "-linux-x64.so");
-                } else {
-                    System.load(path + LIBRARY_NAME + "-linux-i386.so");
+                    System.load(path + LIBRARY_NAME + "-linux-x64.so");
+                } else {                
                     System.out.println("Load library " + path + LIBRARY_NAME + "-linux-i386.so");
+                    System.load(path + LIBRARY_NAME + "-linux-i386.so");
                 }
             }
             loaded = true;
