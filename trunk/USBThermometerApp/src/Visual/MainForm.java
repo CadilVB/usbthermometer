@@ -956,11 +956,11 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
                     sb.append(sensor.getName());
                     sb.append(": ");
                     if ( (device instanceof NullDevice) || (sensor.getLastSample() == null)) {
-                        sb.append("-\n");
+                        sb.append("- \n");
                     } else {
                         sb.append(sensor.getLastSample().getValue());
                         sb.append(Temperature.getUnitString());
-                        sb.append("\n");
+                        sb.append(" \n");
                     }
                 }
             }
