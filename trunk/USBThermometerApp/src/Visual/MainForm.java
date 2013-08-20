@@ -36,6 +36,7 @@ import Visual.Triggers.TriggersConfigurationDialog;
 import java.awt.AWTException;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
@@ -106,7 +107,14 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
     public void addToSystemTray() {
         if (SystemTray.isSupported()) {
             SystemTray tray = SystemTray.getSystemTray();
-            trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("graphics/kni - ikona.png"));
+            
+            String osName = System.getProperty("os.name").toLowerCase();
+            if (osName.startsWith("linux")) {
+                trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("graphics/kni - ikona - linux.png"));
+            } else {
+                trayIcon = new TrayIcon(Toolkit.getDefaultToolkit().getImage("graphics/kni - ikona.png"));                    
+            }
+                
             trayIcon.setToolTip(bundle.getString("NOT_READY_YET..."));
             trayIcon.setImageAutoSize(true);
             trayIcon.addMouseListener(new MouseAdapter() {
@@ -194,16 +202,25 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
             });
 
             //Add components to pop-up menu
-            final JPopupMenu pop_up = new JPopupMenu();
+            final TrayPopupMenu pop_up = new TrayPopupMenu();
             pop_up.add(showItem);
-            pop_up.addSeparator();
             pop_up.add(optionsItem);
             pop_up.add(triggersItem);
             pop_up.add(aboutItem);
             pop_up.add(exitItem);
 
-            trayIcon.addMouseListener(new TrayIconMouseAdapter(pop_up));
-
+            trayIcon.addMouseListener(new MouseAdapter() {
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    if (e.getButton() == MouseEvent.BUTTON3) {
+                        pop_up.setLocation(e.getX(), e.getY());
+                        pop_up.setInvoker(pop_up);
+                        pop_up.setVisible(true);
+                    }
+                }
+            });
+            //trayIcon.addMouseListener(new TrayIconMouseAdapter(pop_up));
+            
             updateTrayToolTip();
 
             try {
