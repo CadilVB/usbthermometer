@@ -8,7 +8,6 @@ package USBThermometerLib;
 import USBThermometerLib.ExceptionErrors.CrcError;
 import USBThermometerLib.ExceptionErrors.DeviceError;
 import USBThermometerLib.ExceptionErrors.DeviceNotSupported;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,9 +41,9 @@ public abstract class TemperatureSensor extends Sensor {
                     try {
                         temperature = trunc(driver.GetTemperture(device.getHwHandle(), Id));
 
-                        if( ( ( temperature == 85 ) && ( Math.abs(lastTemperature - temperature) > 1 ) ) || 
-                            ( temperature > 125.0 ) || 
-                            ( temperature < -55.0 ) ) {
+                        // if conversion has not finished it is possible that temperature 
+                        // reading will not be proper
+                        if( ( temperature == 85 ) && ( Math.abs(lastTemperature - temperature) > 1 ) ) {
                             temperature = null;
                         } else {
                             lastTemperature = temperature;
