@@ -20,13 +20,13 @@ OBJ_i386 = usbThermometerLib-linux-i386.o
 all: out_x64 out_i386
 
 out_x64: $(OBJ_x64)
-	$(LD) -shared $(OBJ_x64) -o $(OUT_x64) libftd2xx-x64.a
+	$(LD) -shared $(OBJ_x64) -o $(OUT_x64) -L./lib/x86-64/ -lftd2xx
 
 $(OBJ_x64): usbThermometer.cpp
 	$(CXX) -m64 $(CFLAGS) $(INC) -c usbThermometer.cpp -o $(OBJ_x64) -fPIC
 
 out_i386: $(OBJ_i386)
-	$(LD) -m elf_i386 -shared $(OBJ_i386) -o $(OUT_i386) libftd2xx-i386.a
+	$(LD) -m elf_i386 -shared $(OBJ_i386) -o $(OUT_i386) -L./lib/i386/ -lftd2xx
 
 $(OBJ_i386): usbThermometer.cpp
 	$(CXX) -m32 $(CFLAGS) $(INC) -c usbThermometer.cpp -o $(OBJ_i386)
