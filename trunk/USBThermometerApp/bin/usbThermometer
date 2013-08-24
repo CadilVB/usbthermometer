@@ -1,6 +1,20 @@
 #!/bin/bash
 cd /usr/share/usbThermometer
 
-rmmod ftdi_sio
-rmmod usbserial
+# Wait for Desktop GUI to load
+while true
+do
+if ps -A | grep panel > /dev/null;
+then
+break;
+else
+sleep 5
+fi
+done
+
+# Reload FTDI library
+sudo rmmod ftdi_sio
+sudo rmmod usbserial
+
+# Start USB Thermometer
 sudo java -cp "./build/classes:./lib/sqlite4java.jar:./lib/jcalendar-1.4.jar:./lib/mail.jar:./lib/RXTXcomm.jar:./lib/USBThermometerLib.jar:./lib/mysql-connector-java-5.1.18-bin.jar:" -Djava.library.path=.  Main/Main

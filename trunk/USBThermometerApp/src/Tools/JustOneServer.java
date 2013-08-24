@@ -31,10 +31,11 @@ public class JustOneServer extends Thread {
                     // Wait for a connection
                     clientSocket = serverSocket.accept();
                     // System.out.println("*** Got a connection! ");
-                    MainForm.getInstance().setVisible(true);
-                    MainForm.getInstance().setState(JFrame.NORMAL);
-                    MainForm.getInstance().setAlwaysOnTop(true);
-                    MainForm.getInstance().setAlwaysOnTop(false);
+                    MainForm mf = MainForm.getInstance();
+                    mf.setVisible(true);
+                    mf.setExtendedState(mf.getLastState());
+                    mf.setAlwaysOnTop(true);
+                    mf.setAlwaysOnTop(false);
 
                     clientSocket.close();
                 }
