@@ -75,6 +75,10 @@ public class WorkspaceManager {
             heightMainEle.appendChild(doc.createTextNode(Integer.toString(mf.getHeight())));
             rootElement.appendChild(heightMainEle);
 
+            Element extendedStateMainEle = doc.createElement("extended-state");
+            extendedStateMainEle.appendChild(doc.createTextNode(Integer.toString(mf.getExtendedState())));
+            rootElement.appendChild(extendedStateMainEle);
+            
             List visualElements = mf.getVisualElemets();
             for (Object obj : visualElements) {
                 if (obj instanceof JInternalFrame) {
@@ -289,7 +293,8 @@ public class WorkspaceManager {
             final int yMf = Integer.parseInt(getTagValue("y-pos", docElement));
             final int widthMf = Integer.parseInt(getTagValue("width", docElement));
             final int heightMf = Integer.parseInt(getTagValue("height", docElement));
-
+            final int extendedState = Integer.parseInt(getTagValue("extended-state", docElement));
+            
             NodeList dialogList = docElement.getElementsByTagName("dialog");
 
             for (int i = 0; i < dialogList.getLength(); i++) {
@@ -557,10 +562,12 @@ public class WorkspaceManager {
                         }
                     }
                 }
-
-                mainForm.setBounds(new Rectangle(xMf, yMf, widthMf, heightMf));
-                mainForm.repaint();
             }
+            
+            mainForm.setBounds(new Rectangle(xMf, yMf, widthMf, heightMf));
+            mainForm.setLastState(extendedState);
+            mainForm.repaint();
+            
         } catch (Exception ex) {
             Logger.getLogger("USBThermometer").log(Level.ALL, null, ex);
         }

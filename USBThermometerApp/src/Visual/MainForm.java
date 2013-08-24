@@ -27,7 +27,6 @@ import Main.Main;
 import Tools.Configuration;
 import Tools.ConfigurationManager;
 import Tools.CharsetControl;
-import Tools.TrayIconMouseAdapter;
 import Tools.WorkspaceManager;
 import Visual.DevicesTree.DevicesTree;
 import Visual.Graph.GraphPanel;
@@ -36,7 +35,6 @@ import Visual.Triggers.TriggersConfigurationDialog;
 import java.awt.AWTException;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.SystemTray;
 import java.awt.Toolkit;
 import java.awt.TrayIcon;
@@ -65,8 +63,9 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
 
     private DevicesTree devicesTree;
     private SearchProgressBar searchProgressBar;
-    private List<Component> visualElements = new ArrayList<Component>();
+    private List<Component> visualElements = new ArrayList<>();
     private TrayIcon trayIcon = null;
+    private int lastState = JFrame.NORMAL;
 
     private static MainForm instance;
     private final ResourceBundle bundle;
@@ -125,14 +124,15 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
 
                     if (evt.getButton() == MouseEvent.BUTTON1) {
                         if (isVisible() && (getState() != JFrame.ICONIFIED) ) {
-                            if( c.isCloseToTray() ) {
+                            lastState = getExtendedState();
+                            if( c.isCloseToTray() ) {                               
                                 setVisible(false);
                             } else {
                                 setState(JFrame.ICONIFIED);
                             }
                         } else {
+                            setExtendedState(lastState);
                             setVisible(true);
-                            setState(JFrame.NORMAL);
                             setAlwaysOnTop(true);
                             repaint();
                             setAlwaysOnTop(false);
@@ -196,8 +196,8 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
 
                 @Override
                 public void actionPerformed(ActionEvent arg0) {
-                    setVisible(true);
-                    setState(JFrame.NORMAL);
+                    setExtendedState(lastState);
+                    setVisible(true);                    
                 }
             });
 
@@ -228,6 +228,8 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
             } catch (AWTException ex) {
                 Logger.getLogger("USB Thermometer").log(Level.SEVERE, null, ex);
             }
+        } else {
+            Logger.getLogger("USB Thermometer").log(Level.INFO, "Tray is not supported" );
         }
     }
 
@@ -281,6 +283,7 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
         WorkspaceManager.load(this);
         
         if (!c.isStartMinimized()) {
+            setExtendedState(lastState);
             setVisible(true);
         } else {
             if (c.isShowInTray()) {
@@ -321,6 +324,14 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
         UIManager.put("FileChooser.filesOfTypeLabelText",bundle.getString("FILES_OF_TYPE"));
         UIManager.put("FileChooser.fileNameLabelText",bundle.getString("FILE_NAME"));
         UIManager.put("FileChooser.cancelButtonText",bundle.getString("CANCEL"));
+    }
+    
+    public void setLastState(int lastState) {
+        this.lastState = lastState;
+    }
+    
+    public int getLastState() {
+        return lastState;
     }
     
     @SuppressWarnings("unchecked")
@@ -774,7 +785,6 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
             String filename = f.getAbsolutePath();
             WorkspaceManager.save(filename);
         }
-        return;
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -814,7 +824,6 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
                 }
             }).start();
         }
-        return;
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -906,6 +915,7 @@ public class MainForm extends javax.swing.JFrame implements HostObserver {
         Configuration c = ConfigurationManager.load();
 
         if( c.isShowInTray() && c.isCloseToTray() ) {
+            lastState = getExtendedState();
             setVisible(false);
         } else {
             Main.exit();
