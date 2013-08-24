@@ -42,22 +42,25 @@ public abstract class TemperatureSensor extends Sensor {
                     try {
                         temperature = trunc(driver.GetTemperture(device.getHwHandle(), Id));
 
-                        if( ( temperature == 85 ) && ( Math.abs(lastTemperature - temperature) > 1 ) ) {
+                        if( ( ( temperature == 85 ) && ( Math.abs(lastTemperature - temperature) > 1 ) ) || 
+                            ( temperature > 125.0 ) || 
+                            ( temperature < -55.0 ) ) {
                             temperature = null;
                         } else {
                             lastTemperature = temperature;
                         }
                     } catch (CrcError ex) {
+                        System.out.println("Java CRC Error");
                         Logger.getLogger("USBThermometer").log(Level.ALL, null, ex);
                     }
                 }
             } catch (DeviceNotSupported ex) {
                 Logger.getLogger("USBThermometer").log(Level.ALL, null, ex);
-            }
+            } 
             if( temperature != null ) {
                 sample = new Temperature(this,temperature,device.getStartConversionDate());
-            }
-            lastSample = sample;
+                lastSample = sample;
+            }            
         }
         return sample;
     }

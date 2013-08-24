@@ -13,6 +13,5 @@ public class CrcError extends Exception {
     public CrcError(){}
 
     public CrcError(String txt) {
-        super(txt);
     }
 }
