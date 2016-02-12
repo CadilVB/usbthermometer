@@ -1,0 +1,1 @@
+USB Thermometer is a temperature logger. Works on Windows and Linux hosts. Works with an external hardware and 1-wire temperature sensors. Provide multiple tools for data analyze and display. Has build-in triggers functions: RS232 trigger, TCP/IP, UDP trigger, SMTP trigger and others.
